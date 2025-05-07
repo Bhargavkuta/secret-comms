@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Chatroom</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat-style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h1>My Personal Chatroom</h1>
+            <div class="user-info">
+                <span id="current-username"></span>
+                <button id="logout-button">Logout</button>
+                <button id="clear-chat-button" class="admin-only">Clear Chat</button>
+            </div>
+            <div class="status">Status: <span id="status">Connected</span></div>
+            <div class="online-users">
+                <h3>Online Users:</h3>
+                <ul id="users-list"></ul>
+            </div>
+        </header>
+        
+        <div class="chat-messages" id="messages"></div>
+        
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message..." autocomplete="off">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
