@@ -1,6 +1,5 @@
 // Configuration
 const ADMIN_USERNAME = 'bhargavkuta';
-const CORRECT_PASSWORD = 'mysecretpassword'; // Change this!
 
 // DOM Elements
 const loginForm = document.getElementById('login-form');
@@ -25,6 +24,11 @@ if (loginForm) {
         const username = usernameInput.value.trim();
         const password = passwordInput.value.trim();
         
+        if (!username || !password) {
+            showError('Username and password are required');
+            return;
+        }
+        
         try {
             const response = await fetch('/api/auth/login', {
                 method: 'POST',
@@ -34,20 +38,23 @@ if (loginForm) {
                 body: JSON.stringify({ username, password })
             });
             
+            const data = await response.json();
+            
             if (response.ok) {
-                const data = await response.json();
                 localStorage.setItem('authToken', data.token);
                 localStorage.setItem('username', username);
                 window.location.href = 'index.html';
             } else {
-                const data = await response.json();
                 showError(data.error || 'Login failed');
             }
         } catch (error) {
+            console.error('Login error:', error);
             showError('Network error. Please try again.');
         }
     });
 }
+
+// ... rest of the auth.js file remains the same ...
 
 // Logout button
 if (logoutButton) {
